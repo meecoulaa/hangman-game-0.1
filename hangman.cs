@@ -70,6 +70,12 @@ namespace HelloWorld
                         fail++;
                     }   */           
                 }
+                foreach (char c in chars)
+                {
+                                       
+                }
+
+
                 if (win == rndWord.Length)
                 {
                     foreach (char c in chars)
