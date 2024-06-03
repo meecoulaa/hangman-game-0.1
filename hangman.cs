@@ -1,0 +1,89 @@
+using System;
+using System.Globalization;
+
+namespace HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            // Number of words are generated here
+            Console.WriteLine("Enter how many words will you add: ");
+            int numWords = Convert.ToInt32(Console.ReadLine()); 
+
+            // Empty array for words is generated here
+            string[] words = new string[numWords];
+
+            // Words are manually added to the game here
+            for (int x = 0; x < numWords; x++)
+            {
+                int y = x + 1;
+                Console.WriteLine("{0}.Enter a new word:  ", y);
+                string word1 = Console.ReadLine();             
+                words[x] = word1;
+            } 
+
+            // Generating a random index for array of stored words
+            Random rnd = new Random();
+            int maxWords = numWords - 1;
+            int rndIndex = rnd.Next(maxWords);
+
+            // Random word from the array
+            string rndWord = words[rndIndex];
+            // Generating an empty array with number of letters from the random word
+            char[] chars = new char[rndWord.Length];
+
+            // Adding number of empty spaces inside the char array
+            for(int numOfLines = 0; numOfLines < rndWord.Length; numOfLines++)
+            {
+                chars[numOfLines] = '_';
+            }
+
+
+            int numOfFails = 0;
+            int win = 0;
+            int fail = 0;
+            while (numOfFails < 3 && win < rndWord.Length)
+            {
+
+                Console.WriteLine("Try a new letter: ");
+                // Displaying the number of empty spaces
+                foreach (char c in chars)
+                {
+                    Console.Write(c + " ");
+                }
+                char guess = Convert.ToChar(Console.ReadLine());
+                // Adding correct guesses to an empty array
+                // guess = char.ToLower(guess);              
+                for (int charOfWord = 0; charOfWord < rndWord.Length; charOfWord++)
+                {
+                    if (guess == rndWord[charOfWord])
+                    {                                                  
+                        Console.WriteLine("That is the right letter!");                                           
+                        chars[charOfWord] = guess;
+                        win++;
+
+                    }
+                    /* else
+                    {
+                        fail++;
+                    }   */           
+                }
+                if (win == rndWord.Length)
+                {
+                    foreach (char c in chars)
+                    {
+                        Console.Write(c + " ");                      
+                    }
+                    Console.WriteLine("<--- You have won!");
+
+                }
+                else if (numOfFails >= 3)
+                {
+                    Console.WriteLine("You have failed!");
+                }
+            }
+        }
+    }
+}

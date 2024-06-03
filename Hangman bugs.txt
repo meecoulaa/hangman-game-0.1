@@ -1,0 +1,2 @@
+1. Make it so you cant add the same word
+2. Make it so you can only write letters in words (no special characters)
